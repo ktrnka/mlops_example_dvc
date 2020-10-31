@@ -1,13 +1,12 @@
 setup-mac:
-	brew install git-lfs pipenv pyenv
+	brew install pipenv pyenv
 	brew tap heroku/brew && brew install heroku
-	git lfs install
 
 # for local development, I like to use pipenv and have a single virtual environment
 setup-env:
 	pipenv --python 3.7
-	pipenv install -r training/requirements.txt
-	pipenv install -r serving/requirements.txt
+	pipenv install --skip-lock -r training/requirements.txt
+	pipenv install --skip-lock -r serving/requirements.txt
 
 train:
 	python training/src/main.py serving/data/ serving/requirements.txt
