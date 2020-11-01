@@ -9,7 +9,7 @@ setup-env:
 	pipenv install --skip-lock -r serving/requirements.txt
 
 train:
-	python training/src/main.py serving/data/ serving/requirements.txt
+	dvc repro train
 
 serve:
 	FLASK_ENV=development FLASK_APP=serving/src/main.py python -m flask run

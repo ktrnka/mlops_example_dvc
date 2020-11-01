@@ -89,10 +89,7 @@ You'll need to set up your github actions for the Heroku configuration. `deploy_
 
 # TODO
 
-- Terraform to create the S3 bucket with appropriate config
-- Adjust the Makefile to add models to dvc
-- Adjust the github actions to use dvc
-- Change the metrics tracking to use dvc
+- Remove the old way of tracking metrics
 
 ## Bugs
 

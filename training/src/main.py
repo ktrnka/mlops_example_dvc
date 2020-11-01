@@ -1,4 +1,5 @@
 import argparse
+import json
 import os.path
 import re
 import subprocess
@@ -29,7 +30,7 @@ def main():
     testing_data.target = [testing_data.target_names[t] for t in testing_data.target]
 
     model = make_pipeline(
-        TfidfVectorizer(min_df=40, ngram_range=(1, 1), sublinear_tf=True),
+        TfidfVectorizer(min_df=40, ngram_range=(1, 2), sublinear_tf=True),
         LogisticRegressionCV()
     )
 
@@ -59,6 +60,16 @@ def main():
 
     dump(model, os.path.join(args.output_dir, "model.joblib.gz"), compress=9)
     freeze_model_file_requirements(args.output_requirements_txt, ["scikit-learn", "joblib"])
+
+    with open(os.path.join(args.output_dir, "metrics.json"), "w") as json_out:
+        json.dump({
+            "accuracy": test_accuracy,
+            "baseline": {
+                "accuracy": baseline_accuracy
+            },
+            "training_rows": len(training_data.data),
+            "testing_rows": len(testing_data.data)
+        }, json_out, sort_keys=True, indent=3)
 
 
 def freeze_model_file_requirements(requirements_file: str, package_prefixes: List[str]):
