@@ -1,0 +1,8 @@
+train:
+  cmd: python training/src/main.py serving/data/ serving/requirements.txt
+  deps:
+  - path: training/
+    md5: 288fea5cab19e6c275e4c3fb9d92f0b0.dir
+  outs:
+  - path: serving/data/model.joblib.gz
+    md5: 3691452206258db215a299ab1249c7f5
