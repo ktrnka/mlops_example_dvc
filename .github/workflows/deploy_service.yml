@@ -21,6 +21,9 @@ jobs:
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       run: heroku container:login
+    - uses: actions/setup-python@v2
+      with:
+        python-version: 3.7
     - name: Checkout data (DVC)
       run: |
         pip install dvc[s3]
