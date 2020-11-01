@@ -1,5 +1,5 @@
 setup-mac:
-	brew install pipenv pyenv
+	brew install pipenv pyenv terraform
 	brew tap heroku/brew && brew install heroku
 
 # for local development, I like to use pipenv and have a single virtual environment
