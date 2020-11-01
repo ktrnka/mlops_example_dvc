@@ -13,6 +13,7 @@ class BasicTests(unittest.TestCase):
     def test_valid_prediction(self):
         response = self.app.post("/predict", json={"text": "hi mom"})
         self.assertEqual(response.status_code, 200)
+        self.assertIn("category", response.json)
 
 
 if __name__ == "__main__":
