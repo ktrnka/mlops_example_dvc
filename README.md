@@ -82,10 +82,14 @@ Issues I heard about:
 * Someone reverted the new code but it didn't revert the new model and the old code doesn't work with the new model so we can't revert; we just need to fix the bug asap. (The same thing can happen the other way around)
 * Someone deployed a model update to the database and it went to production without any tests or verification
 
-# Setting up the Heroku deployment
+# Setting up a service
 You'll need to set up your github actions for the Heroku configuration. `deploy_service.yml` needs two secrets:
 * `HEROKU_API_KEY`: You can create a key by running `heroku authorizations:create`
 * `HEROKU_APP`: You can create an app by running `heroku create`. This is the app name, like "dancing-bear-1234"
+
+Also:
+* You'll need to create an IAM access key and secret and put them in your github secrets.
+* Create the S3 bucket that you want to use. You can go into the infrastructure directory, edit the bucket prefix, and run `terraform init` then `terraform apply`. It'll show the bucket name that's created. Then you'll need to configure that to be your DVC remote, either via the command line or `.dvc/config`
 
 # TODO
 
@@ -104,7 +108,7 @@ You'll need to set up your github actions for the Heroku configuration. `deploy_
 
 # Concerns
 
-- Any limitations from Github actions? Max size of downloaded resources like word vectors?
+- Max size of downloaded resources like word vectors on github actions?
 - What's the max size Docker image for Heroku?
 
 # Known limitations
