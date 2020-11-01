@@ -89,7 +89,7 @@ You'll need to set up your github actions for the Heroku configuration. `deploy_
 
 # TODO
 
-- Change the metrics tracking to use dvc
+- Remove the old way of tracking metrics
 
 ## Bugs
 
