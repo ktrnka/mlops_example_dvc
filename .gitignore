@@ -125,3 +125,6 @@ dmypy.json
 # These are just for local development
 /Pipfile
 /Pipfile.lock
+
+# Don't need the Jetbrains stuff
+/.idea/
