@@ -19,5 +19,8 @@ jobs:
           python-version: 3.7
       - run: pip install -r serving/requirements.txt
       - run: dvc pull
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       - name: Run tests
         run: make test-service
