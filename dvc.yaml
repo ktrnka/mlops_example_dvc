@@ -5,3 +5,5 @@ stages:
     - training/
     outs:
     - serving/data/model.joblib.gz
+    metrics:
+    - serving/data/metrics.json
