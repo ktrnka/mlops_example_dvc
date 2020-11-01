@@ -1,0 +1,23 @@
+name: Web service tests
+
+# when a branch is pushed and it updates the serving code or this file
+on:
+  push:
+    branches-ignore:
+      - main
+    paths:
+    - 'serving/**'
+    - '.github/workflows/test_service.yml'
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.7
+      - run: pip install -r serving/requirements.txt
+      - run: dvc pull
+      - name: Run tests
+        run: make test-service
