@@ -1,0 +1,43 @@
+name: Train model
+
+# when a branch is pushed and it updates the training code or this file
+on:
+  push:
+    branches-ignore:
+      - main
+    paths:
+    - 'training/**'
+    - '.github/workflows/train_model.yml'
+
+jobs:
+  train:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.7
+      - run: pip install -r training/requirements.txt
+      - name: Train model
+        run: make train
+      - name: Commit model
+        # email address from https://github.community/t/github-actions-bot-email-address/17204/5
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -am "Automated model build"
+          dvc add serving/data/model.joblib.gz
+          git push
+          dvc push
+      - run: pip install -r serving/requirements.txt
+      - name: Run tests
+        run: make test-service
+
+
+
+# Commented out because it doesn't look like it's working (was only 22 bytes)
+#      - name: Cache scikit-learn downloaded data
+#        uses: actions/cache@v2
+#        with:
+#          path: ~/.scikit_learn_data
+#          key: scikit_learn_data
