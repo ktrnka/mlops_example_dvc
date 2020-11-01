@@ -17,7 +17,5 @@ serve:
 test-service:
 	PYTHONPATH=. python serving/tests/test_service.py
 
-DEPLOYED_URL := $(shell heroku info -s | grep web_url | cut -d= -f2)
-
 ping-heroku-service:
-	curl --header "Content-Type: application/json" --request POST --data '{"text":"science and technology news"}' ${DEPLOYED_URL}/predict
+	curl --header "Content-Type: application/json" --request POST --data '{"text":"science and technology news"}' $(shell heroku info -s | grep web_url | cut -d= -f2)/predict
