@@ -1,3 +1,3 @@
 outs:
-- md5: fdc8ac57a119eb36f57e2dcfeff6c1ac
+- md5: 91fde2f1f97c460e99c32ca237ddd519
   path: model.joblib.gz
