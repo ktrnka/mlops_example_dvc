@@ -1,0 +1,4 @@
+[core]
+    remote = storage
+['remote "storage"']
+    url = s3://trnka-dvc-20201101000647420100000001/dvc-storage
