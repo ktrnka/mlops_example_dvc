@@ -1,3 +1,5 @@
+**Archived: Before 2022, Heroku had a generous free tier that was useful for prototyping. That's no longer the case so I wouldn't recommend this approach for learning**
+
 An example of how to apply DevOps concepts like CI/CD to machine learning.
 
 The repo shows basic concepts, such as:
